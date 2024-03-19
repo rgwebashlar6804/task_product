@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task-I</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style/style.css">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <link rel="icon" href="img/tab-bar-icon.png">
+</head>
+
+<body>
+  <div class="container p-2">
+    <!-- navbar start -->
+    <h4 class="m-2 ms-3 text-center">Product Demo</h4>
+    <nav class="navbar nav-bar sticky-top nav-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex justify-content-between">
+          <button type="button" class="btn btn-primary btn-add" data-bs-toggle="modal"
+            data-bs-target="#addDataModal">Add Data</button>
+          
+        </a>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col-2">
+        <aside class="bd-aside text-muted align-self-start mb-2 mb-xl-5 px-2">
+          <nav class="small">
+            <ul class="list-unstyled">
+              <h2 class="h5 pt-4  mb-2 border-bottom">Filter by Search
+                <hr style="border: 2px dotted black;">
+              </h2>
+              <li class="my-2">
+                <!-- Product Search by Name -->
+                <form class="d-flex col-sm-4 input-group w-auto">
+                  <input type="search" class="search-bar form-control" placeholder="Search by Name" aria-label="Search"
+                    aria-describedby="search-addon" id="serachProductText" oninput="searchBar()" />
+                  <!-- <button type="button" class="btn btn-outline-success disabled"><i class='bx bx-search-alt-2' ></i></button> -->
+                </form>
+              </li>
+              <li class="my-2">
+                <!-- Product Search by Category -->
+                <form class="d-flex col-sm-4 input-group w-auto">
+                  <input type="search" class="search-bar form-control" placeholder="Search by category"
+                    aria-label="Search" aria-describedby="search-addon" id="serachProductcategory"
+                    oninput="searchBar1()" />
+                  <!-- <button type="button" class="btn btn-outline-success disabled"><i class='bx bx-search-alt-2' ></i></button> -->
+                </form>
+              </li>
+              <li class="my-2">
+                <!-- Product Search by Color -->
+                <form class="d-flex col-sm-4 input-group w-auto">
+                  <input type="search" class="search-bar form-control" placeholder="Search by color" aria-label="Search"
+                    aria-describedby="search-addon" id="serachProductcolor" oninput="searchBar2()" />
+                  <!-- <button type="button" class="btn btn-outline-success disabled"><i class='bx bx-search-alt-2' ></i></button> -->
+                </form>
+              </li>
+            </ul>
+            <ul class="list-unstyled">
+              <h2 class="h5 pt-4  mb-2 border-bottom">Sort By
+                <hr style="border: 2px dotted black;">
+              </h2>
+              <li class="my-2">
+                <select class="form-select sort-btn ms-2" id="sort-select" aria-label="Default select example">
+                  <option value="refresh-btn" disabled>-----Restore-sort-----</option>
+                  <option value="refresh-btn">Restore-sort</option>
+                  <option selected disabled>-----Sort-By-----</option>
+                  <!-- <option value="asc">id</option> -->
+                  <!-- <option value="desc">id desc</option> -->
+                  <option value="name">A-Z Name</option>
+                  <option value="name-desc">Z-A Name</option>
+                  <option value="color">color</option>
+                  <option value="color-desc">color desc</option>
+                  <option value="category">category</option>
+                  <option value="price">price high-low</option>
+                  <option value="price-desc">price low-high</option>
+                </select>
+              </li>
+            </ul>
+            <ul class="list-unstyled">
+              <h2 class="h5 pt-4  mb-2 border-bottom">Category By
+                <hr style="border: 2px dotted black;">
+              </h2>
+              <li class="my-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="category" onchange="filterCategories()" value="Box Bed" id="box-bed">
+                    <label class="form-check-label" for="box-bed">
+                      Box Bed
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="category" onchange="filterCategories()" value="Phone" id="Phone">
+                    <label class="form-check-label" for="Phone">
+                      Phone
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="category" onchange="filterCategories()" value="Microwave Oven" id="Microwave_Oven">
+                    <label class="form-check-label" for="Microwave_Oven">
+                      Microwave Oven
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="category" onchange="filterCategories()" value="Camera" id="camera">
+                    <label class="form-check-label" for="box-bed">
+                      Camera
+                    </label>
+                  </div>
+
+              </li>
+              
+            </ul>
+          </nav>
+        </aside>
+      </div>
+      <div class="col-10">
+        <div class="container card-body-all">
+          <div class="card-container d-flex flex-wrap" id="curd-table">
+          </div>
+          <div class="card-container d-flex flex-wrap" id="sort-table"></div>
+        </div>
+      </div>
+    </div>
+    <!-- navbar end -->
+
+
+
+    <!-- Add Module Start -->
+    <div class="modal fade" id="addDataModal" tabindex="-1" aria-labelledby="addDataModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="form">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addDataModal">Add Data</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="myform">
+              <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="Enter Item name"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <small id="name-error-msg" style="color: red;"></small>
+              </div>
+              <div class="form-group mt-2">
+                <input type="text" class="form-control" id="category" placeholder="Enter Item category"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <small id="category-error-msg" style="color: red;"></small>
+              </div>
+              <div class="form-group mt-2">
+                <input type="text" class="form-control" id="price" placeholder="Enter Item Price"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <small id="price-error-msg" style="color: red;"></small>
+              </div>
+              <div class="form-group mt-2">
+                <input type="text" class="form-control" id="color" placeholder="Enter Item color"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <small id="color-error-msg" style="color: red;"></small>
+              </div>
+              <div class="form-group mt-2">
+                <textarea class="form-control h-25" id="description" placeholder="Enter Item Description"
+                  rows="3"></textarea>
+                <small id="disc-error-msg" style="color: red;"></small>
+              </div>
+              <div class="form-group mt-2">
+                <input type="file" class="form-control" id="inputGroupFile01">
+                <small id="image-error-msg" style="color: red;"></small>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+
+            <button type="submit" class="btn submitButton w-100" id="submitdata" onclick="AddData()">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Module Start -->
+    <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="form">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Update Product Data</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <div id="image-div"></div>
+                <label for="id-edit">Product Id -</label>
+                <input type="text" class="form-control" id="id-edit" aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default" disabled>
+              </div>
+              <div class="form-group mt-2">
+                <label for="name-edit">Name -</label>
+                <input type="text" class="form-control" id="name-edit" placeholder="Enter Product name"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="form-group mt-2">
+                <label for="category-edit">category -</label>
+                <input type="text" class="form-control" id="category-edit" placeholder="Enter Product category"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="form-group mt-2">
+                <label for="price-edit">Price -</label>
+                <input type="text" class="form-control" id="price-edit" placeholder="Enter Product Price"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="form-group mt-2">
+                <label for="color-edit">color -</label>
+                <input type="text" class="form-control" id="color-edit" placeholder="Enter Product color"
+                  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="form-group mt-2">
+                <label for="description-edit">Description -</label>
+                <textarea class="form-control h-25" id="description-edit" placeholder="Enter Description of Product"
+                  rows="3"></textarea>
+              </div>
+              <div class="form-group mt-2">
+                <label for="image-edit">Product - Image -</label>
+                <input type="file" class="form-control" id="image-edit">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success w-100" id="update">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Edit Module End -->
+  </div>
+
+
+
+  <!-- Add Module End -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script src="script/script.js"></script>
+</body>
+
+</html>
